@@ -3,6 +3,8 @@ from langchain_ibm import WatsonxLLM
 from langchain.chains import LLMChain
 from langchain.prompts import PromptTemplate
 from ibm_watsonx_ai import Credentials
+from dotenv import load_dotenv
+load_dotenv()
 import os
 
 def setup_credentials():
