@@ -1,0 +1,32 @@
+.chat-container {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+  background-color: #f8f9fa;
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: #6c757d;
+  text-align: center;
+}
+
+.empty-state h2 {
+  margin-bottom: 10px;
+  color: #343a40;
+}
+
+.empty-state p {
+  font-size: 1rem;
+  margin: 0;
+}
+
+.messages {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
