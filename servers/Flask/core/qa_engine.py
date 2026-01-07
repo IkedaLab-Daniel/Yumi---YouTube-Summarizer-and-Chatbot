@@ -29,6 +29,7 @@ def create_qa_prompt_template():
     You are an expert assistant providing detailed answers based on video content.
     Relevant Video Context: {context}
     Question: {question}
+    Answer: 
     """
     return PromptTemplate(
         input_variables=["context", "question"],
@@ -44,7 +45,7 @@ def answer_question(processed_transcript, question, credentials, project_id):
         model_id="meta-llama/llama-3-3-70b-instruct",
         url=credentials.get("url"),
         project_id=project_id,
-        params={"max_new_tokens": 2000, "min_new_tokens": 50},
+        params={"max_new_tokens": 1000},
         apikey=os.getenv("API_KEY")
     )
     

@@ -24,12 +24,44 @@ body {
   background-color: #007bff;
   color: white;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .app-header h1 {
   font-size: 1.5rem;
   font-weight: 600;
   margin: 0;
+}
+
+.new-video-button {
+  padding: 8px 16px;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 6px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-weight: 500;
+}
+
+.new-video-button:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.error-banner {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 12px 24px;
+  border-bottom: 1px solid #f5c6cb;
+  text-align: center;
+}
+
+.error-banner p {
+  margin: 0;
+  font-size: 0.95rem;
 }
 
 .error-container {

@@ -1,12 +1,13 @@
 import './App.css';
 import { useChatContext } from './context/ChatContext';
+import VideoInput from './components/VideoInput';
 import ChatContainer from './components/ChatContainer';
 import ChatInput from './components/ChatInput';
 
 const App = () => {
-  const { chats, loading, error, summarize_video } = useChatContext();
+  const { currentVideo, messages, loading, error, summarize_video, askQuestion, resetChat } = useChatContext();
 
-  const handleSend = async (videoUrl) => {
+  const handleVideoSubmit = async (videoUrl) => {
     try {
       await summarize_video({ video_url: videoUrl });
     } catch (err) {
@@ -14,22 +15,35 @@ const App = () => {
     }
   };
 
-  if (error) {
-    return (
-      <div className="error-container">
-        <h1>Error</h1>
-        <p>{error}</p>
-      </div>
-    );
+  const handleAskQuestion = async (question) => {
+    try {
+      await askQuestion(question);
+    } catch (err) {
+      console.error('Failed to get answer:', err);
+    }
+  };
+
+  // Show initial video input page if no video has been processed
+  if (!currentVideo) {
+    return <VideoInput onSubmit={handleVideoSubmit} loading={loading} />;
   }
 
+  // Show chat interface after video is processed
   return (
     <div className="app">
       <header className="app-header">
         <h1>YouTube RAG Chat</h1>
+        <button onClick={resetChat} className="new-video-button">
+          New Video
+        </button>
       </header>
-      <ChatContainer chats={chats} />
-      <ChatInput onSend={handleSend} loading={loading} />
+      {error && (
+        <div className="error-banner">
+          <p>{error}</p>
+        </div>
+      )}
+      <ChatContainer messages={messages} videoUrl={currentVideo.url} />
+      <ChatInput onSend={handleAskQuestion} loading={loading} placeholder="Ask a question about the video..." />
     </div>
   );
 };

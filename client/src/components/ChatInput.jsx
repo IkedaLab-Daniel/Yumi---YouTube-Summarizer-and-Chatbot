@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './ChatInput.css';
 
-const ChatInput = ({ onSend, loading }) => {
+const ChatInput = ({ onSend, loading, placeholder = "Type your message..." }) => {
   const [input, setInput] = useState('');
 
   const handleSubmit = (e) => {
@@ -18,7 +18,7 @@ const ChatInput = ({ onSend, loading }) => {
         type="text"
         value={input}
         onChange={(e) => setInput(e.target.value)}
-        placeholder="Enter YouTube URL..."
+        placeholder={placeholder}
         disabled={loading}
       />
       <button type="submit" disabled={loading || !input.trim()}>
